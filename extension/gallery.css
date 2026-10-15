@@ -1,0 +1,272 @@
+:root {
+  --bg: #f5f6fa;
+  --card: #ffffff;
+  --border: #e6e8ef;
+  --text: #1f2430;
+  --muted: #8a90a2;
+  --primary: #6366f1;
+  --primary-2: #8b5cf6;
+  --danger: #ef4444;
+  --success: #10b981;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* 顶部工具栏 */
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 14px 22px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.brand .subtitle {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: var(--muted);
+  max-width: 420px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.count {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.count b {
+  color: var(--primary);
+}
+
+.btn {
+  padding: 9px 16px;
+  font-size: 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.btn.primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-2));
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+}
+
+.btn.primary:hover {
+  opacity: 0.92;
+  color: #fff;
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* 进度条 */
+.progress {
+  padding: 14px 22px 4px;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+}
+
+.progress-bar {
+  height: 8px;
+  background: #eceef5;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--primary), var(--primary-2));
+  border-radius: 999px;
+  transition: width 0.2s ease;
+}
+
+.progress-text {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* 结果反馈 */
+.result {
+  margin: 14px 22px 0;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.result.success {
+  background: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+}
+
+.result.warn {
+  background: #fffbeb;
+  color: #b45309;
+  border: 1px solid #fde68a;
+}
+
+.result.error {
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
+
+/* 图片网格 */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+  gap: 14px;
+  padding: 22px;
+}
+
+.card {
+  position: relative;
+  background: var(--card);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(31, 36, 48, 0.1);
+}
+
+.card.selected {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.18);
+}
+
+.card img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  background: #f0f1f6;
+}
+
+.card img.broken {
+  object-fit: contain;
+  padding: 16px;
+  filter: grayscale(1);
+  opacity: 0.5;
+}
+
+/* 复选框（右上角） */
+.check {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #d0d4e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.check svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: #fff;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0;
+}
+
+.card.selected .check {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+.card.selected .check svg {
+  opacity: 1;
+}
+
+/* 尺寸与序号 */
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 10px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.meta .seq {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* 空状态 */
+.empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 80px 20px;
+  font-size: 16px;
+}
+
+.empty .hint {
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+    padding: 14px;
+  }
+}

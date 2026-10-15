@@ -1,0 +1,36 @@
+# ===== 依赖 =====
+node_modules/
+
+# ===== 构建产物 =====
+dist/
+dist-ssr/
+*.local
+
+# ===== 环境变量（保留 .env.example 模板） =====
+.env*
+!.env.example
+
+# ===== 日志 =====
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ===== 编辑器 / IDE =====
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ===== 操作系统 =====
+.DS_Store
+Thumbs.db
+
+# ===== 打包产物与临时副本 =====
+ImageGrab-extension.zip
+ImageGrab-extension/

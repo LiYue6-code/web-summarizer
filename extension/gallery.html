@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>电商图片提取下载 · 图库</title>
+  <link rel="stylesheet" href="gallery.css" />
+</head>
+<body>
+  <header class="toolbar">
+    <div class="brand">
+      <h1>🖼️ 电商图片提取下载</h1>
+      <p class="subtitle" id="sourceInfo" title="">请先选择要下载的图片</p>
+    </div>
+    <div class="actions">
+      <button id="btnSelectAll" class="btn">全选</button>
+      <button id="btnInvert" class="btn">反选</button>
+      <span class="count">已选 <b id="selectedCount">0</b> / <b id="totalCount">0</b></span>
+      <button id="btnDownload" class="btn primary">下载选中</button>
+    </div>
+  </header>
+
+  <div class="progress" id="progressWrap" hidden>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <div class="progress-text" id="progressText"></div>
+  </div>
+
+  <div id="result" class="result" hidden></div>
+
+  <main id="grid" class="grid"></main>
+
+  <div id="empty" class="empty" hidden>
+    <p>📭 暂无图片</p>
+    <p class="hint">请先在淘宝 / 京东 / 拼多多商品详情页，点击右下角的「获取图片」按钮。</p>
+  </div>
+
+  <script src="gallery.js"></script>
+</body>
+</html>
