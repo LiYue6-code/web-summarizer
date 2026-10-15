@@ -1,0 +1,113 @@
+@import 'tailwindcss';
+
+/*
+ * 设计令牌（Tailwind v4 @theme）
+ * 修改 --color-accent 即可全局切换强调色（PRD：强调色可配置）。
+ */
+@theme {
+  --color-background: #0b0f1a; /* 深色主题背景 */
+  --color-surface: #111827; /* 卡片/区块背景 */
+  --color-foreground: #e6eaf2; /* 主文字 */
+  --color-muted: #94a3b8; /* 次级文字 */
+  --color-accent: #6c8cff; /* 强调色 */
+  --color-border: #1f2937; /* 边框 */
+
+  --radius-card: 16px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    'PingFang SC',
+    'Microsoft YaHei',
+    Roboto,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 无障碍：用户偏好减少动效时，关闭动画与平滑滚动 */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============ 细节打磨：全局交互与视觉 ============ */
+
+/* 选中文本：使用强调色高亮 */
+::selection {
+  background: color-mix(in srgb, var(--color-accent) 35%, transparent);
+  color: var(--color-foreground);
+}
+
+/* 链接与按钮的键盘焦点环：保证焦点可见（WCAG AA） */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* 锚点滚动：为吸顶导航预留高度，避免区块标题被遮挡 */
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+/* 区块标题：左侧强调色竖条，统一视觉风格 */
+section h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+section h2::before {
+  content: '';
+  flex: none;
+  width: 0.25rem;
+  height: 1.5rem;
+  border-radius: 9999px;
+  background: var(--color-accent);
+}
+
+/* 技能进度条：进入视口后展开 */
+@keyframes skill-grow {
+  from {
+    width: 0;
+  }
+}
+
+/* 滚动条（WebKit）：贴合深色主题 */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-muted);
+}
